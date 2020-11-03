@@ -1,0 +1,14 @@
+/------------------ linbox.pc ------------------------
+prefix=/usr/local
+exec_prefix=/usr/local
+libdir=${exec_prefix}/lib
+includedir=/usr/local/include
+
+Name: linbox
+Description: Exact Linear Algebra library
+URL: http://github.com/linbox-team/linbox
+Version: 1.5.2
+Requires: fflas-ffpack >= 2.3.1
+Libs: -L${libdir} -llinbox       
+Cflags: -O2   -Wall -g -DNDEBUG -U_LB_DEBUG -DDISABLE_COMMENTATOR -I${includedir}       
+\-------------------------------------------------------

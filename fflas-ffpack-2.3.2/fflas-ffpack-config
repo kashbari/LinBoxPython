@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+# Coypright (c) 2011 FFLAS-FFPACK
+# written by Brice Boyer (briceboyer) <boyer.brice@gmail.com>
+# adapted from LinBox configuration
+#
+# ========LICENCE========
+# This file is part of the library FFLAS-FFPACK.
+#
+# FFLAS-FFPACK is free software: you can redistribute it and/or modify
+# it under the terms of the  GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+# ========LICENCE========
+#/
+
+
+
+prefix=/usr/local
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+major=`echo 2.3.2 | cut -d'.' -f1`
+minor=`echo 2.3.2 | cut -d'.' -f2`
+micro=`echo 2.3.2 | cut -d'.' -f3`
+decvr=$((((($major*100)+$minor)*100)+$micro))
+
+
+cflags=false
+libs=false
+
+
+usage()
+{
+    cat <<EOF
+Usage: fflas-ffpack-config [OPTION]
+
+Known values for OPTION are:
+
+  --prefix		 		show FFLAS-FFPACK installation prefix
+  --libs		 		print library linking information
+  --blas-libs			print BLAS library linking information
+  --cflags			print pre-processor and compiler flags
+  --blas-cflags	 		print BLAS pre-processor and BLAS compiler flags
+  --blas-home	 		print where BLAS were found
+  --help		 		display this help and exit
+  --version		     	output version information string (eg 2.3.2)
+  --decimal-version	 	output version in decimal representation (base 100, that is $decvr)
+
+EOF
+
+    exit $1
+}
+
+if test $# -eq 0; then
+    usage 1
+fi
+
+while test $# -gt 0; do
+	case "$1" in
+		-*=*)
+			optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` 
+			;;
+		*)
+			optarg=
+			;;
+	esac
+
+	case "$1" in
+		--prefix=*)
+			prefix=$optarg
+			;;
+
+		--prefix)
+			echo $prefix
+			;;
+
+		--version)
+			echo 2.3.2
+			exit 0
+			;;
+
+		--decimal-version)
+			echo $decvr
+			exit 0
+			;;
+
+		--help)
+			usage 0
+			;;
+
+		--cflags)
+			echo -I${includedir}  -I/usr/local/include -fabi-version=6 -fopenmp -mavx -mavx2 -mfma -msse -msse2 -msse3 -msse4.1 -msse4.2 -mssse3 -fabi-version=6 -I/usr/local/include   -fopenmp # @CUDA_CFLAGS@
+			;;
+
+		--blas-cflags)
+			echo -I${includedir} @BLAS_CFLAG@  @AVXFLAGS@ # -fopenmp # @CUDA_CFLAGS@
+			;;
+
+		--libs)
+			echo -fopenmp  /usr/lib/x86_64-linux-gnu/blas/libblas.so -L/usr/local/lib -lgivaro -lgmp -lgmpxx # @CUDA_LIBS@
+			;;
+
+		--blas-libs)
+			echo  /usr/lib/x86_64-linux-gnu/blas/libblas.so
+			;;
+
+		--blas-home)
+			echo  @BLAS_PATH@
+			;;
+
+		*)
+			usage
+			exit 1
+			;;
+	esac
+	shift
+done
+echo
+
+exit 0

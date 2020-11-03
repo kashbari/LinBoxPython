@@ -1,0 +1,5 @@
+dummy.lo: dummy.C /usr/include/stdc-predef.h ../givaro-config.h
+
+/usr/include/stdc-predef.h:
+
+../givaro-config.h:

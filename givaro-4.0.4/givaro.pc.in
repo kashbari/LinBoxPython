@@ -1,0 +1,14 @@
+/------------------ givaro.pc ------------------------
+prefix=@prefix@
+exec_prefix=@prefix@
+libdir=@prefix@/lib
+includedir=@prefix@/include
+
+Name: Givaro
+Description: C++ library for arithmetic and algebraic computations
+URL: http://givaro.forge.imag.fr
+Version: @VERSION@
+Requires:
+Libs: -L@libdir@ -lgivaro @LIBS@
+Cflags: -I@includedir@ @REQUIRED_FLAGS@
+\-------------------------------------------------------

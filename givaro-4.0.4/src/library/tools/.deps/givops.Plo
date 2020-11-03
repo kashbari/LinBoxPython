@@ -1,0 +1,3 @@
+givops.lo: givops.C /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

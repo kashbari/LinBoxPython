@@ -1,0 +1,14 @@
+/------------------ fflas-ffpack.pc ------------------------
+prefix=/usr/local
+exec_prefix=/usr/local
+libdir=/usr/local/lib
+includedir=/usr/local/include
+
+Name: fflas-ffpack
+Description: Finite Field Linear Algebra Suroutines/Package
+URL: http://github.com/linbox-team/fflas-ffpack
+Version: 2.3.2
+Requires: givaro >= 4.0.3
+Libs: -fopenmp  /usr/lib/x86_64-linux-gnu/blas/libblas.so
+Cflags: -I${prefix}/include    -fopenmp   -fabi-version=6
+\-------------------------------------------------------

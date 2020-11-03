@@ -1,0 +1,8 @@
+givprimes16.lo: givprimes16.C /usr/include/stdc-predef.h \
+ givaro/givprimes16.h /usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h
+
+/usr/include/stdc-predef.h:
+
+givaro/givprimes16.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h:
