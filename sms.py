@@ -9,7 +9,7 @@ def tosms(m):
 # m is scipy any sparse format
 def linbox_rank(m):
 	import subprocess
-	proc = subprocess.Popen(['/home/kashbari/git_repo/LinBoxPython/rank'],stdin=subprocess.PIPE,stdout=subprocess.PIPE,shell=True)
+	proc = subprocess.Popen(['/home/kbari/git_repo/LinBoxPython/rank'],stdin=subprocess.PIPE,stdout=subprocess.PIPE,shell=True)
 	proc.stdin.write(tosms(m).encode())
 	return int(proc.communicate()[0])
 

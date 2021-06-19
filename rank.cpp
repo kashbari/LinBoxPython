@@ -57,7 +57,7 @@ int main (int argc, char **argv)
 	Givaro::QField<Givaro::Rational> QQ;
 	MatrixStream<Givaro::QField<Givaro::Rational>> ms( QQ, cin );
 	SparseMatrix<Givaro::QField<Givaro::Rational>, SparseMatrixFormat::SparseSeq > A ( ms );
-	if (A.rowdim() <= 20 && A.coldim() <= 20) A.write(std::cerr << "A:=",Tag::FileFormat::Maple) << ';' << std::endl;
+	if (A.rowdim() <= 2 && A.coldim() <= 2) A.write(std::cerr << "A:=",Tag::FileFormat::Maple) << ';' << std::endl;
 
 
 	cerr << "A is " << A.rowdim() << " by " << A.coldim() << endl;

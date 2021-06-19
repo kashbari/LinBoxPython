@@ -52,7 +52,8 @@ def koszul_summary(T,pmin,pmax):
         print('p is '+str(p))
         a = 2*p+1
         M = TAp(genericproject(T,a),p)
-        r = rank(M)#linbox_rank(csr_matrix(M))
+	print('Dimensions are '+str(M.dimensions()))
+        r = linbox_rank(csr_matrix(M))
         print('rk is '+str(r))
         b = binomial(a-1,p)
         d = ceil(r/b)
@@ -61,10 +62,12 @@ def koszul_summary(T,pmin,pmax):
 
 
 ## so(4)
-T = Tson(4) 
+T = Tson(4)
+print('so(4)')
 koszul_summary(T,0,2)
-
+#basicsummarize(T,2,3)
 
 ## so(5)
 T = Tson(5)
-koszul_summary(T,0,4)
+#koszul_summary(T,0,4)
+#basicsummarize(T,4,5)

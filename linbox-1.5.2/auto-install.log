@@ -1,0 +1,2 @@
+./linbox-auto-install.sh  --stable --makeflag="-j 3" --with-blas-libs="lopenblas"
+./linbox-auto-install.sh  --stable --makeflag="-j 3"
